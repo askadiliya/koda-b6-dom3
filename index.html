@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Survey Perokok</title>
+  </head>
+  <body>
+    <script>
+      const bodyMain = document.querySelector("body");
+      bodyMain.style.display = "flex";
+      bodyMain.style.flexDirection = "column";
+      bodyMain.style.justifyContent = "center";
+      bodyMain.style.alignItems = "center";
+      bodyMain.style.padding = "50px";
+      bodyMain.style.minWidth = "500px";
+
+      
+      const formContainer = document.createElement("form");
+      formContainer.setAttribute(
+        "style",
+        "display:flex; width:500px; min-width:500px; flex-direction:column; align-items:left; padding-top:50px; background-color:whitesmoke"
+      );
+      bodyMain.append(formContainer);
+
+      function createHeader() {
+        const h1 = document.createElement("h1");
+        h1.textContent = "FORM SURVEY PEROKOK";
+        h1.setAttribute("style", "text-align:center");
+        formContainer.append(h1);
+      }
+
+      createHeader();
+
+      // Input Nama & Umur
+      const divInput = document.createElement("div");
+      divInput.setAttribute("style", "padding: 0 50px; display:flex; flex-direction:column;");
+      formContainer.append(divInput);
+
+      const lblNama = document.createElement("label");
+      lblNama.textContent = "Siapa Nama Anda";
+      divInput.append(lblNama);
+
+      const inputName = document.createElement("input");
+      inputName.type = "text";
+      inputName.placeholder = "Input Fullname";
+      inputName.style.margin = "10px 0";
+      divInput.append(inputName);
+
+      const lblUmur = document.createElement("label");
+      lblUmur.textContent = "Berapa Umur Anda";
+      divInput.append(lblUmur);
+
+      const inputAge = document.createElement("input");
+      inputAge.type = "text";
+      inputAge.placeholder = "Input Usia";
+      inputAge.style.margin = "10px 0";
+      divInput.append(inputAge);
+
+      // JENIS KELAMIN (RADIO)
+      const divGender = document.createElement("section");
+      divGender.setAttribute("style", "padding: 10px 50px; display:flex; align-items:center;");
+      formContainer.append(divGender);
+
+      const lblGenderHeader = document.createElement("label");
+      lblGenderHeader.textContent = "Jenis Kelamin: ";
+      lblGenderHeader.style.marginRight = "10px";
+      divGender.append(lblGenderHeader);
+
+      ["Laki-Laki", "Perempuan"].forEach(gender => {
+          const radio = document.createElement("input");
+          radio.type = "radio";
+          radio.name = "gender";
+          radio.id = gender;
+          radio.style.marginRight = "5px";
+
+          const lbl = document.createElement("label");
+          lbl.textContent = gender;
+          lbl.setAttribute("for", gender);
+          lbl.style.marginRight = "15px";
+
+          divGender.append(radio, lbl);
+      });
+
+      // Perokok
+      const divSmoker = document.createElement("section");
+      divSmoker.setAttribute("style", "padding: 10px 50px; display:flex; flex-direction:column;");
+      formContainer.append(divSmoker);
+
+      const lblSmokerHeader = document.createElement("label");
+      lblSmokerHeader.textContent = "Apakah anda seorang perokok ?";
+      lblSmokerHeader.style.marginBottom = "10px";
+      divSmoker.append(lblSmokerHeader);
+
+      const smokerOptions = ["Ya", "Tidak"];
+      const smokerRadioContainer = document.createElement("div");
+      smokerRadioContainer.style.display = "flex";
+      smokerRadioContainer.style.gap = "20px";
+      divSmoker.append(smokerRadioContainer);
+
+      smokerOptions.forEach(opt => {
+          const wrapper = document.createElement("div");
+          
+          const radio = document.createElement("input");
+          radio.type = "radio";
+          radio.name = "isSmoker";
+          radio.id = "smoker_" + opt;
+          radio.value = opt;
+
+          const lbl = document.createElement("label");
+          lbl.textContent = opt;
+          lbl.setAttribute("for", "smoker_" + opt);
+          lbl.style.marginLeft = "5px";
+
+          wrapper.append(radio, lbl);
+          smokerRadioContainer.append(wrapper);
+      });
+
+      // CHECKBOX BRAND ROKOK
+      const divCheckLabel = document.createElement("div");
+      divCheckLabel.setAttribute("style", "padding: 10px 50px;");
+      const lblBrand = document.createElement("label");
+      lblBrand.textContent = "Jika Anda Perokok, Rokok Apa yang anda pernah coba ?";
+      divCheckLabel.append(lblBrand);
+      formContainer.append(divCheckLabel);
+
+      const divCheck = document.createElement("section");
+      divCheck.setAttribute("style", "display:flex; flex-wrap:wrap; padding: 10px 50px; gap: 10px;");
+      formContainer.append(divCheck);
+
+      let arrRokok = ["Gudang Garam Filter", "Luky Strik", "Marlboro", "Esse"];
+      arrRokok.forEach(brand => {
+        const wrap = document.createElement("div");
+        const check = document.createElement("input");
+        check.type = "checkbox";
+        check.id = brand;
+        
+        const lbl = document.createElement("label");
+        lbl.textContent = brand;
+        lbl.setAttribute("for", brand);
+        lbl.style.marginLeft = "5px";
+
+        wrap.append(check, lbl);
+        divCheck.append(wrap);
+      });
+
+      // BUTTON SECTION
+      const divButton = document.createElement("section");
+      divButton.setAttribute("style", "display:flex; gap:10px; padding: 20px 50px 50px 50px;");
+      formContainer.append(divButton);
+
+      const btnSubmit = document.createElement("button");
+      btnSubmit.type = "submit";
+      btnSubmit.innerText = "Submit";
+      btnSubmit.setAttribute("style", "flex:1; height:35px; border-radius:5px; background-color:#6045ec; color:white; border:none; cursor:pointer;");
+      divButton.append(btnSubmit);
+
+      const btnReset = document.createElement("button");
+      btnReset.type = "reset"; 
+      btnReset.innerText = "Reset";
+      btnReset.setAttribute("style", "flex:1; height:35px; border-radius:5px; background-color:#6045ec; color:white; border:none; cursor:pointer;");
+      divButton.append(btnReset);
+    </script>
+  </body>
+</html>
